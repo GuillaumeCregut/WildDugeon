@@ -11,10 +11,10 @@ TagManager:
   - Walls
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Player
+  - EnnemiesLevel2
+  - BossLevel2
   - 
   - 
   - 
