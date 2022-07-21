@@ -39,7 +39,6 @@ public class AgentMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         Debug.Log("Start");
         m_audio.Stop();
-        Walk();
     }
 
 
@@ -47,7 +46,7 @@ public class AgentMovement : MonoBehaviour
     void Update()
     {
        
-        int rand_num = Random.Range(0, 20);
+        int rand_num = Random.Range(0, 1000);
          Debug.Log(rand_num);
         if (rand_num == 5)
         {
@@ -87,8 +86,7 @@ public class AgentMovement : MonoBehaviour
 
     bool MovingToTarget()
     {
-      //   float distance = Vector3.Distance(agent.transform.position, player.transform.position);
-      double distance=3.1;
+        float distance = Vector3.Distance(agent.transform.position, player.transform.position);
         if (distance<3.0)
         {
             agent.SetDestination(player.transform.position);
