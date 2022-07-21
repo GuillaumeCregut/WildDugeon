@@ -9707,7 +9707,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 0}
   player: {fileID: 917741088}
-  currentAction: Walk
+  cry: {fileID: 8300000, guid: 31dfd1c17505c004c93aa07d7abc3e97, type: 3}
+  currentAction: 
 --- !u!114 &1282393906
 MonoBehaviour:
   m_ObjectHideFlags: 0
