@@ -98,6 +98,7 @@ public class AgentMovement : MonoBehaviour
         currentAction=ATTACK_STATE;
         animator.SetBool(ATTACK_STATE,true);
          Debug.Log("Attack");
+          m_audio.Play();
     }
 
     private void ResetAnimation()
