@@ -97,6 +97,7 @@ public class AgentMovement : MonoBehaviour
         ResetAnimation();
         currentAction=ATTACK_STATE;
         animator.SetBool(ATTACK_STATE,true);
+         Debug.Log("Attack");
     }
 
     private void ResetAnimation()
