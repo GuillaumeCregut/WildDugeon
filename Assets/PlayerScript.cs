@@ -9,6 +9,8 @@ public class PlayerScript : MonoBehaviour
     public int rotationSpeed;
 
     public GameObject ennemy;
+    public int health;
+    public int damage;
 
     //Animations
     Animator animator;
@@ -43,6 +45,7 @@ public class PlayerScript : MonoBehaviour
         currentAction = ATTACK_STATE;
         //Le paramètre "Attack" de l'animator = true
         animator.SetBool(ATTACK_STATE, true);
+        TakeDamage(damage);
     }
  
     private void ResetAnimation()
@@ -50,6 +53,22 @@ public class PlayerScript : MonoBehaviour
     //    animator.SetBool(WALK_STATE, false);
         animator.SetBool(ATTACK_STATE, false);
     }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        //Debug.Log("health", health);
+        //Debug.Log("damage", damage);
+        Debug.Log(health);
+        Debug.Log(damage);
+        if (health <= 0) Invoke(nameof(DestroyEnnemy), 2f);
+    }
+
+    private void DestroyEnnemy()
+    {
+        Destroy(ennemy);
+    } 
 
     // Update is called once per frame
     void Update()
