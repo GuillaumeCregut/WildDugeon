@@ -14,6 +14,7 @@ public class FightMonster : MonoBehaviour
     //Agent de Navigation
     NavMeshAgent navMeshAgent;
     
+    private int rand_num;
  
     //Animations
     Animator animator;
@@ -28,6 +29,7 @@ public class FightMonster : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        rand_num = Random.Range(0, 3);
         currentAction = STAND_STATE;
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();      
@@ -36,6 +38,17 @@ public class FightMonster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKey(KeyCode.X))
+        {
+            Application.Quit();
+        }
+        
+        if (rand_num == 2)
+        {
+             // Debug.Log("Animation");
+            animator.SetTrigger("Shout");
+        }
 
         if (player != null)
         {
