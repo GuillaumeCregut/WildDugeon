@@ -21,12 +21,10 @@ public class AgentMovement : MonoBehaviour
     {
         currentAction = STAND_STATE;
         m_audio = GetComponent<AudioSource>();
-        Debug.Log("Awake");
     }
 
     public void Shout()
     {
-        Debug.Log("Shout Function");
         if (!m_audio.isPlaying)
             m_audio.PlayOneShot(cry, 1);
         animator.ResetTrigger("ToShout");
@@ -37,7 +35,6 @@ public class AgentMovement : MonoBehaviour
 
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         animator = GetComponent<Animator>();
-        Debug.Log("Start");
         m_audio.Stop();
     }
 
