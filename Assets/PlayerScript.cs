@@ -9,19 +9,34 @@ public class PlayerScript : MonoBehaviour
     Vector3 currentEulerAngles;
     public float speedTurn;
     float y=270;
- 
+    
+    public GameObject Boss;
+    Animator BossAnimator;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = Vector3.zero;
+    //     BossAnimator=Boss.GetComponent<Animator>();
+    //     BossAnimator.setBool("idle_normal",false);
     }
 
     // Update is called once per frame
     void Update()
     {
-       
-       
+        //Detect Boss
+         float distance = Vector3.Distance(transform.position, Boss.transform.position);
+        
+        if(distance<2)
+        {
+            // BossAnimator.SetBool("idle_combat",true);
+            // BossAnimator.setBool("idle_normal",false);
+        }        
+        
+        if (Input.GetKey(KeyCode.X))
+        {
+            Application.Quit();
+        }
         if (Input.GetKey(KeyCode.L))
         {
             Debug.Log("L : Y était  "+y);
