@@ -8,7 +8,9 @@ public class FightMonster : MonoBehaviour
  
     public GameObject player;
  
- 
+    public int health;
+    public int damage;
+
     //Agent de Navigation
     NavMeshAgent navMeshAgent;
     
@@ -18,7 +20,7 @@ public class FightMonster : MonoBehaviour
     const string STAND_STATE = "Stand";
     //const string WALK_STATE = "Walk";
     const string ATTACK_STATE = "Attack";
- 
+
     //Action actuelle
     public string currentAction;
  
@@ -39,6 +41,7 @@ public class FightMonster : MonoBehaviour
         {
         float distance = Vector3.Distance(navMeshAgent.transform.position, player.transform.position);
         if (distance<1){
+         RotateToTarget(player.transform);
          Attack();
         }
             //Est-ce que l'IA se déplace vers le joueur ?

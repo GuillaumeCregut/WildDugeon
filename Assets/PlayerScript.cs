@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+//    AudioSource MyAudioSource;
+    //AudioClip Sfx;
 
     public float speed;
     public int rotationSpeed;
@@ -11,13 +13,15 @@ public class PlayerScript : MonoBehaviour
     public GameObject ennemy;
     public int health;
     public int damage;
+    private Animator otherAnimator;
 
     //Animations
     Animator animator;
     const string STAND_STATE = "Stand";
     //const string WALK_STATE = "Walk";
     const string ATTACK_STATE = "Attack";
- 
+    const string DEAD_STATE = "Dead";
+
     //Action actuelle
     public string currentAction;
  
@@ -33,7 +37,8 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+    //    MyAudioSource = GetComponent<AudioSource>();
+    //    MyAudioSource.Play();
     }
 
     void Attack()
@@ -62,12 +67,16 @@ public class PlayerScript : MonoBehaviour
         //Debug.Log("damage", damage);
         Debug.Log(health);
         Debug.Log(damage);
+        //if (health <= 0) animator.SetBool(DEAD_STATE, true);
         if (health <= 0) Invoke(nameof(DestroyEnnemy), 2f);
     }
 
     private void DestroyEnnemy()
     {
-        Destroy(ennemy);
+        otherAnimator = ennemy.GetComponent<Animator> ();
+        otherAnimator.SetBool(DEAD_STATE, true);
+        animator.SetBool(ATTACK_STATE, false);
+        //Destroy(ennemy);
     } 
 
     // Update is called once per frame
@@ -92,6 +101,13 @@ public class PlayerScript : MonoBehaviour
         {
             float distance = Vector3.Distance(ennemy.transform.position, transform.position);
             if (distance<1){
+    //        MyAudioSource.Stop(); 
+    //        MyAudioSource.clip = (AudioClip)UnityEditor.AssetDatabase.LoadAssetAtPath("Assets/sound/action-rock-109094.mp3", typeof(AudioClip));
+    //        MyAudioSource.clip = Resources.Load<AudioClip>("Assets/sound/action-rock-109094.mp3");
+
+            //Resources.Load<AudioClip>("Audioclips/" + filename);
+    //        MyAudioSource.Play(); 
+
             Attack();
             }
         }
