@@ -46,11 +46,11 @@ public class AgentMovement : MonoBehaviour
     void Update()
     {
        
-        int rand_num = Random.Range(0, 1000);
-         Debug.Log(rand_num);
+        int rand_num = Random.Range(0, 400);
+        // Debug.Log(rand_num);
         if (rand_num == 5)
         {
-              Debug.Log("Animation");
+             // Debug.Log("Animation");
             animator.SetTrigger("ToShout");
         }
         if (Input.GetKeyDown(KeyCode.M))
