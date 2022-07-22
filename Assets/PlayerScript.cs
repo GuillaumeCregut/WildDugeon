@@ -8,10 +8,47 @@ public class PlayerScript : MonoBehaviour
     public float speed;
     public int rotationSpeed;
 
+    public GameObject ennemy;
+
+    //Animations
+    Animator animator;
+    const string STAND_STATE = "Stand";
+    //const string WALK_STATE = "Walk";
+    const string ATTACK_STATE = "Attack";
+ 
+    //Action actuelle
+    public string currentAction;
+ 
+ 
+    // Start is called before the first frame update
+    void Awake()
+    {
+        currentAction = STAND_STATE;
+        animator = GetComponent<Animator>();      
+    }
+
+
     // Start is called before the first frame update
     void Start()
     {
         
+    }
+
+    void Attack()
+    {
+        Debug.Log("AttackPlayer");
+        //Réinitialise les paramètres de l'animator
+        ResetAnimation();
+        //L'action est maintenant "Attack"
+        currentAction = ATTACK_STATE;
+        //Le paramètre "Attack" de l'animator = true
+        animator.SetBool(ATTACK_STATE, true);
+    }
+ 
+    private void ResetAnimation()
+    {  
+    //    animator.SetBool(WALK_STATE, false);
+        animator.SetBool(ATTACK_STATE, false);
     }
 
     // Update is called once per frame
@@ -31,7 +68,16 @@ public class PlayerScript : MonoBehaviour
 
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
+
+        if (ennemy != null)
+        {
+            float distance = Vector3.Distance(ennemy.transform.position, transform.position);
+            if (distance<1){
+            Attack();
+            }
+        }
     }
+
 
 /*
     void FixedUpdate(){
